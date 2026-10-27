@@ -1,0 +1,57 @@
+{
+  "name": "seoaudit-ai-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SEOAudit AI — the Next.js web app (auth, dashboard, API routes) wrapping the crawler/audit engine in lib/crawler",
+  "scripts": {
+    "dev": "next dev",
+    "build": "npm run build:crawler && next build",
+    "build:crawler": "tsc -P tsconfig.crawler.json && node -e \"require('fs').cpSync('lib/crawler/fonts', 'dist-crawler/fonts', { recursive: true })\"",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "ts-node -P tsconfig.crawler.json lib/crawler/crawlPage.test.ts",
+    "test:site": "ts-node -P tsconfig.crawler.json lib/crawler/crawlSite.test.ts",
+    "test:score": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/score.test').run()\"",
+    "test:cache": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/cache.test').run()\"",
+    "test:compare": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/compareAudits.test').run()\"",
+    "test:explain": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/explainPage.test').run()\"",
+    "test:pdf": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/generateReportPdf.test').run()\"",
+    "test:projection": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/scoreProjection.test').run()\"",
+    "test:consistency": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/reportConsistency.test').run()\"",
+    "test:imagefilename": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/imageFilename.test').run()\"",
+    "test:all": "npm run test && npm run test:site && npm run test:score && npm run test:cache && npm run test:compare && npm run test:explain && npm run test:pdf && npm run test:projection && npm run test:consistency && npm run test:imagefilename && npm run test:urlseo && npm run test:agencybranding && npm run test:reportfonts && npm run test:cwv && npm run test:indexability",
+    "crawl": "ts-node -P tsconfig.crawler.json lib/crawler/index.ts",
+    "test:agencybranding": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/agencyBranding.test').run()\"",
+    "test:reportfonts": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/reportFonts.test').run()\"",
+    "test:urlseo": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/urlSeo.test').run()\"",
+    "test:cwv": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/coreWebVitals.test').run()\"",
+    "test:indexability": "ts-node -P tsconfig.crawler.json -e \"require('./lib/crawler/indexabilityChecks.test').run()\""
+  },
+  "dependencies": {
+    "@paddle/paddle-js": "^1.6.4",
+    "@paddle/paddle-node-sdk": "^3.8.0",
+    "@react-pdf/renderer": "^4.0.0",
+    "@supabase/ssr": "^0.5.1",
+    "@supabase/supabase-js": "^2.45.0",
+    "adm-zip": "^0.6.0",
+    "archiver": "^8.0.0",
+    "cheerio": "^1.0.0",
+    "next": "^15.0.0",
+    "@sparticuz/chromium": "^153.0.0",
+    "puppeteer-core": "^25.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.8",
+    "@types/archiver": "^8.0.0",
+    "@types/node": "^22.5.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

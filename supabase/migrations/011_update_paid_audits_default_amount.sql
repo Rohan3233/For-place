@@ -1,0 +1,1 @@
+alter table paid_audits alter column amount_cents set default 500;

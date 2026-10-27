@@ -1,0 +1,1 @@
+update subscriptions set max_pages = 350, reports_per_month = 60 where plan = 'agency';
